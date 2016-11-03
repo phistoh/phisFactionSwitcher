@@ -1,15 +1,9 @@
 ---------------------
 -- TODO: Tabard takes precedence over zone/rep change
 
--- TODO: Include last changed faction
-
 -- TODO: Handle zones with multiple factions (random/highest rep)
 
--- TODO: Don't switch reputation if already exalted
-
 -- TODO: Vashj'ir subzones
-
--- TODO: Restore collapes reputation headers
 ---------------------
 
 -- slash commands
@@ -99,7 +93,7 @@ function phis_SetFactionIndexByID(rep_id)
 	
 	-- if already exalted, don't switch
 	if standing == 8 then
-		print("Already exalted with "..faction_name..".")
+		-- print("Already exalted with "..faction_name..".")
 		return
 	end
 	
