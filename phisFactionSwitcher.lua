@@ -136,7 +136,7 @@ function phis_SetFactionIndexByName(faction_name)
 			end
 			-- if the player is already exalted, end the loop
 			if standing == 8 then
-				print("Already exalted with "..faction_name..".")
+				-- print("Already exalted with "..faction_name..".")
 				break
 			end
 			-- set the faction
