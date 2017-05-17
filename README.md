@@ -10,10 +10,12 @@ The addon automatically switches the watched faction so there is nothing you hav
 - **phisTables.lua** contains tables to assign faction IDs to corresponding tabards and zones
 
 ## Changes
+- **1.0.2**: Includes "Armies of the Legionfall"
+- **1.0.1**: Disabled "Already exalted with [faction name]." message when wearing a tabard
 - **1.0**: Initial release
 
 ## To-Do
-- [ ] Tabard takes precedence over zone rep
+- [ ] Implementing some kind of precedence (tabard > zone > last reputation)
 - [ ] Handle zones with multiple factions (random/highest rep/...?)
 - [ ] Include Vashj'ir subzones
 - [ ] Implement an useful function for the `/preps` slash command

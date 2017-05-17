@@ -97,6 +97,7 @@ phisZones = {
 	["Highmountain"] = 1828,								-- Highmountain Tribe
 	["Suramar"] = 1859,										-- The Nightfallen
 	["Stormheim"] = 1948,									-- Valajar
+	["Broken Shore"] = 2045,								-- Armies of the Legionfall
 	
 	-- Other
 	["Deepholm"] = 1171,									-- Therazane
