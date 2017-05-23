@@ -91,8 +91,19 @@ end
 function phis_SetFactionIndexByID(rep_id)
 	local faction_name, _, standing = GetFactionInfoByID(rep_id)
 	
+	-- list of factions with paragon rewards
+	local paragons = {
+						[1828]=true, -- Highmountain Tribe
+						[1859]=true, -- The Nightfallen
+						[1883]=true, -- Dreamweavers
+						[1900]=true, -- Court of Farondis
+						[1948]=true, -- Valajar
+						[2045]=true  -- Armies of the Legionfall
+					}
+	
 	-- if already exalted, don't switch
-	if standing == 8 then
+	-- except when it is a "paragonable" reputation
+	if standing == 8 and not paragons[rep_id] then
 		-- print("Already exalted with "..faction_name..".")
 		return
 	end
