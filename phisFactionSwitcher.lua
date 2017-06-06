@@ -3,7 +3,7 @@
 
 -- TODO: Handle zones with multiple factions (random/highest rep)
 
--- TODO: Vashj'ir subzones
+-- TODO: Fix paragon reputation on rep gain through quest/item
 ---------------------
 
 -- slash commands
