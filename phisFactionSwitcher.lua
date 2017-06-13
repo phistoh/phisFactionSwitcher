@@ -13,13 +13,23 @@ SLASH_PREPS3 = "/preps"
 
 -- slash command will be used to toggle reputation back to current zone
 SlashCmdList["PREPS"] = function(args)
-	-- phis_OnEvent(phis_f, "ZONE_CHANGED_NEW_AREA")
+	print("phisFactionSwitcher v1.0.5")
 end
 
 -- initialize variables
 local item_id, rep_id, zone_name
 local player_faction = string.sub(UnitFactionGroup("player"), 1, 1) -- returns the first letter of the players faction
 local collapsed_factions = {} -- will be used in the auxilliary functions to expand and collapse headers
+-- the different "faction standing changed" messages
+local faction_standing_msg = {
+	string.gsub(FACTION_STANDING_INCREASED, "%%s", "(.+)"),
+	string.gsub(FACTION_STANDING_INCREASED_GENERIC, "%%s", "(.+)"),
+	string.gsub(FACTION_STANDING_DECREASED, "%%s", "(.+)"),
+	string.gsub(FACTION_STANDING_DECREASED_GENERIC, "%%s", "(.+)"),
+	string.gsub(FACTION_STANDING_INCREASED_ACH_BONUS, "%%s", "(.+)"),
+	string.gsub(FACTION_STANDING_INCREASED_BONUS, "%%s", "(.+)"),
+	string.gsub(FACTION_STANDING_INCREASED_DOUBLE_BONUS, "%%s", "(.+)")
+}
 
 -- function which handles the events
 local function phis_OnEvent(self, event, ...)
@@ -71,17 +81,38 @@ local function phis_OnEvent(self, event, ...)
 		return
 	end
 	
-	-- check the player's combat text
-	if (event == "COMBAT_TEXT_UPDATE") then
-		local arg1, arg2 = ...
+	-- -- check the player's combat text
+	-- if (event == "COMBAT_TEXT_UPDATE") then
+		-- local arg1, arg2 = ...
 		
-		-- if it is not about reputation gain/loss do nothing
-		if (arg1 ~= "FACTION") then
-			return
+		-- -- if it is not about reputation gain/loss do nothing
+		-- if (arg1 ~= "FACTION") then
+			-- return
+		-- end
+		
+		-- -- watch the faction
+		-- phis_SetFactionIndexByName(arg2)
+	
+	-- end
+	
+	-- check the player's combat text
+	if (event == "CHAT_MSG_COMBAT_FACTION_CHANGE") then
+		local arg1 = ...
+		
+		-- extract the faction name out of the string
+		local faction_name = nil
+		local i = 1
+		
+		-- end the loop if either a faction name was found or if the message could not be matched to one of the "changed standing" messages
+		while (faction_name == nil) and (i < #faction_standing_msg) do
+			faction_name = string.match(arg1, faction_standing_msg[i])
+			i = i+1
 		end
 		
 		-- watch the faction
-		phis_SetFactionIndexByName(arg2)
+		if faction_name ~= nil then
+			phis_SetFactionIndexByName(faction_name)
+		end
 	
 	end
 	
@@ -206,7 +237,8 @@ local phis_f = CreateFrame("Frame")
 phis_f:RegisterEvent("PLAYER_ENTERING_WORLD")
 phis_f:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 phis_f:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
-phis_f:RegisterEvent("COMBAT_TEXT_UPDATE")
+-- phis_f:RegisterEvent("COMBAT_TEXT_UPDATE")
+phis_f:RegisterEvent("CHAT_MSG_COMBAT_FACTION_CHANGE")
 
 -- set script
 phis_f:SetScript("OnEvent", phis_OnEvent)

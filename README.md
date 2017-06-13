@@ -10,6 +10,7 @@ The addon automatically switches the watched faction so there is nothing you hav
 - **phisTables.lua** contains tables to assign faction IDs to corresponding tabards and zones
 
 ## Changes
+- **1.0.5**: Fixed a bug where the addon would not change the watched faction after gaining reputation if already exalted
 - **1.0.4**: Now includes Vashj'ir subzones
 - **1.0.3**: Exempts Legion factions from ignoring to switch when exalted (-> you can see your current Paragon progress)
 - **1.0.2**: Includes "Armies of the Legionfall"
