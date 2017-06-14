@@ -2,8 +2,6 @@
 -- TODO: Tabard takes precedence over zone/rep change
 
 -- TODO: Handle zones with multiple factions (random/highest rep)
-
--- TODO: Fix paragon reputation on rep gain through quest/item
 ---------------------
 
 -- slash commands
@@ -13,19 +11,19 @@ SLASH_PREPS3 = "/preps"
 
 -- initialize variables
 local item_id, rep_id, zone_name
-local enabled = false -- controls the automatic switching
+local enabled = true -- controls the automatic switching
 local player_faction = string.sub(UnitFactionGroup("player"), 1, 1) -- returns the first letter of the players faction
 local collapsed_factions = {} -- will be used in the auxilliary functions to expand and collapse headers
 -- list of factions with paragon rewards
 local paragons = {
-					[1828]=true, -- Highmountain Tribe
-					[1859]=true, -- The Nightfallen
-					[1883]=true, -- Dreamweavers
-					[1900]=true, -- Court of Farondis
-					[1948]=true, -- Valajar
-					[2045]=true  -- Armies of the Legionfall
-				}
--- the different "faction standing changed" messages
+	[1828]=true, -- Highmountain Tribe
+	[1859]=true, -- The Nightfallen
+	[1883]=true, -- Dreamweavers
+	[1900]=true, -- Court of Farondis
+	[1948]=true, -- Valajar
+	[2045]=true  -- Armies of the Legionfall
+}
+-- the different "faction standing changed" messages with %s replaced by a pattern with captures
 local faction_standing_msg = {
 	string.gsub(FACTION_STANDING_INCREASED, "%%s", "(.+)"),
 	string.gsub(FACTION_STANDING_INCREASED_GENERIC, "%%s", "(.+)"),
@@ -38,6 +36,7 @@ local faction_standing_msg = {
 
 -- slash command will be used to toggle reputation back to current zone
 SlashCmdList["PREPS"] = function(args)
+	-- generic help message
 	if args:lower() ~= "toggle" then
 		print("phisFactionSwitcher v"..GetAddOnMetadata("phisFactionSwitcher","Version"))
 		print("Toggle the automatic switching of reputations with /preps toggle")
@@ -51,8 +50,14 @@ end
 
 -- function which handles the events
 local function phis_OnEvent(self, event, ...)
+
+	-- do nothing if the addon is currently disabled
+	if not enabled then
+		return
+	end
+
 	-- check if the player equipped/unequipped something
-	if (event == "PLAYER_EQUIPMENT_CHANGED") and enabled then
+	if (event == "PLAYER_EQUIPMENT_CHANGED") then
 		local arg1, arg2 = ...
 		-- if the changed item was not a tabard or if an item was unequipped do nothing
 		if (arg1 ~= INVSLOT_TABARD) or (arg2 ~= 1) then
@@ -71,7 +76,7 @@ local function phis_OnEvent(self, event, ...)
 	
 	-- check if the player entered a zone with a corresponding reputation
 	-- (will also get fired if the player enters the world)
-	if ((event == "ZONE_CHANGED_NEW_AREA") or (event == "PLAYER_ENTERING_WORLD")) and enabled then
+	if (event == "ZONE_CHANGED_NEW_AREA") or (event == "PLAYER_ENTERING_WORLD") then
 		-- get name of the zone
 		zone_name = GetRealZoneText()
 		
@@ -100,7 +105,7 @@ local function phis_OnEvent(self, event, ...)
 	end
 	
 	-- check the player's combat text
-	if (event == "CHAT_MSG_COMBAT_FACTION_CHANGE") and enabled then
+	if (event == "CHAT_MSG_COMBAT_FACTION_CHANGE") then
 		local arg1 = ...
 		
 		-- extract the faction name out of the string
@@ -215,7 +220,7 @@ function phis_CollapseAndForget()
 	collapsed_factions = {}
 end
 
--- create frame es event listener
+-- create frame as event listener
 local phis_f = CreateFrame("Frame")
 
 -- register events
