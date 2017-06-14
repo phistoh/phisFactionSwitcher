@@ -13,13 +13,22 @@ SLASH_PREPS3 = "/preps"
 
 -- slash command will be used to toggle reputation back to current zone
 SlashCmdList["PREPS"] = function(args)
-	print("phisFactionSwitcher v1.0.5")
+	print("phisFactionSwitcher v"..GetAddOnMetadata("phisFactionSwitcher","Version"))
 end
 
 -- initialize variables
 local item_id, rep_id, zone_name
 local player_faction = string.sub(UnitFactionGroup("player"), 1, 1) -- returns the first letter of the players faction
 local collapsed_factions = {} -- will be used in the auxilliary functions to expand and collapse headers
+-- list of factions with paragon rewards
+	local paragons = {
+						[1828]=true, -- Highmountain Tribe
+						[1859]=true, -- The Nightfallen
+						[1883]=true, -- Dreamweavers
+						[1900]=true, -- Court of Farondis
+						[1948]=true, -- Valajar
+						[2045]=true  -- Armies of the Legionfall
+					}
 -- the different "faction standing changed" messages
 local faction_standing_msg = {
 	string.gsub(FACTION_STANDING_INCREASED, "%%s", "(.+)"),
@@ -81,20 +90,6 @@ local function phis_OnEvent(self, event, ...)
 		return
 	end
 	
-	-- -- check the player's combat text
-	-- if (event == "COMBAT_TEXT_UPDATE") then
-		-- local arg1, arg2 = ...
-		
-		-- -- if it is not about reputation gain/loss do nothing
-		-- if (arg1 ~= "FACTION") then
-			-- return
-		-- end
-		
-		-- -- watch the faction
-		-- phis_SetFactionIndexByName(arg2)
-	
-	-- end
-	
 	-- check the player's combat text
 	if (event == "CHAT_MSG_COMBAT_FACTION_CHANGE") then
 		local arg1 = ...
@@ -109,6 +104,8 @@ local function phis_OnEvent(self, event, ...)
 			i = i+1
 		end
 		
+		print(faction_name)
+		
 		-- watch the faction
 		if faction_name ~= nil then
 			phis_SetFactionIndexByName(faction_name)
@@ -121,16 +118,6 @@ end
 -- searches the index of a faction (given by id)
 function phis_SetFactionIndexByID(rep_id)
 	local faction_name, _, standing = GetFactionInfoByID(rep_id)
-	
-	-- list of factions with paragon rewards
-	local paragons = {
-						[1828]=true, -- Highmountain Tribe
-						[1859]=true, -- The Nightfallen
-						[1883]=true, -- Dreamweavers
-						[1900]=true, -- Court of Farondis
-						[1948]=true, -- Valajar
-						[2045]=true  -- Armies of the Legionfall
-					}
 	
 	-- if already exalted, don't switch
 	-- except when it is a "paragonable" reputation
@@ -167,23 +154,14 @@ function phis_SetFactionIndexByName(faction_name)
 	phis_ExpandAndRemember()
 	
 	-- check for every faction in the reputation pane if its name is the same as the argument
-	-- if a valid faction was found check if it is active and switch to it
+	-- if a valid faction was found call phis_SetFactionIndexByID() to set the faction
 	local current_name
 	for i = 1, GetNumFactions() do
-		current_name, _, standing = GetFactionInfo(i)
+		current_name, _, _, _, _, _, _, _, _, _, _, _, _, rep_id = GetFactionInfo(i)
 		if faction_name == current_name then
-			-- if the faction is inactive, end the loop
-			if IsFactionInactive(i) then
-				break
-			end
-			-- if the player is already exalted, end the loop
-			if standing == 8 then
-				-- print("Already exalted with "..faction_name..".")
-				break
-			end
-			-- set the faction
-			SetWatchedFactionIndex(i)
-			break
+			phis_CollapseAndForget()
+			phis_SetFactionIndexByID(rep_id)
+			return
 		end
 	end
 	
@@ -237,7 +215,6 @@ local phis_f = CreateFrame("Frame")
 phis_f:RegisterEvent("PLAYER_ENTERING_WORLD")
 phis_f:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 phis_f:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
--- phis_f:RegisterEvent("COMBAT_TEXT_UPDATE")
 phis_f:RegisterEvent("CHAT_MSG_COMBAT_FACTION_CHANGE")
 
 -- set script
