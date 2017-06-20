@@ -40,11 +40,11 @@ SlashCmdList["PREPS"] = function(args)
 	if args:lower() ~= "toggle" then
 		print("phisFactionSwitcher v"..GetAddOnMetadata("phisFactionSwitcher","Version"))
 		print("Toggle the automatic switching of reputations with /preps toggle")
+	else	
+		-- toggle the value of disabled
+		enabled = not enabled
+		print("phisFactionSwitcher is now "..(enabled and "enabled" or "disabled")..".")
 	end
-	
-	-- toggle the value of disabled
-	enabled = not enabled
-	print("phisFactionSwitcher is now "..(enabled and "enabled" or "disabled")..".")
 	
 end
 
