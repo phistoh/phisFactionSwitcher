@@ -21,6 +21,7 @@ local paragons = {
 	[1883]=true, -- Dreamweavers
 	[1900]=true, -- Court of Farondis
 	[1948]=true, -- Valajar
+	[1894]=true, -- The Wardens
 	[2045]=true  -- Armies of the Legionfall
 }
 -- the different "faction standing changed" messages with %s replaced by a pattern with captures
@@ -162,6 +163,11 @@ end
 
 -- searches the index of a faction (given by name)
 function phis_SetFactionIndexByName(faction_name)
+	-- if the player gets guild reputation, get the guild name
+	if faction_name == 'Guild' then
+		faction_name = GetGuildInfo('player')
+	end
+
 	-- expand faction headers so they get included in the search
 	phis_ExpandAndRemember()
 	

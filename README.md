@@ -10,6 +10,7 @@ The addon automatically switches the watched faction so there is nothing you hav
 - **phisTables.lua** contains tables to assign faction IDs to corresponding tabards and zones
 
 ## Changes
+- **1.0.7**: Fixed switching to the guild reputation
 - **1.0.6**: Implemented a possibility to (temporarily) disable the addon
 - **1.0.5**: Fixed a bug where the addon would not change the watched faction after gaining reputation if already exalted
 - **1.0.4**: Now includes Vashj'ir subzones
@@ -19,6 +20,7 @@ The addon automatically switches the watched faction so there is nothing you hav
 - **1.0**: Initial release
 
 ## To-Do
+- [ ] Implement guild tabard
 - [ ] Implementing some kind of precedence (tabard > zone > last reputation)
 - [ ] Handle zones with multiple factions (random/highest rep/...?)
 - [x] Include Vashj'ir subzones
