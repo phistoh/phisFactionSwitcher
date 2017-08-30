@@ -102,6 +102,11 @@ phisZones = {
 	["Stormheim"] = 1948,									-- Valajar
 	["Broken Shore"] = 2045,								-- Armies of the Legionfall
 	
+	-- Argus
+	["Krokuun"] = 2165,										-- Army of the Light
+	["Antoran Wastes"] = 2165,								-- Army of the Light
+	["Mac\'Aree"] = 2165,									-- Army of the Light
+	
 	-- Other
 	["Deepholm"] = 1171,									-- Therazane
 	["Darkmoon Island"] = 909,								-- Darkmoon Faire
