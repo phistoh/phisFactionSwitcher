@@ -5,9 +5,8 @@
 ---------------------
 
 -- slash commands
-SLASH_PREPS1 = "/phisreputationswitcher"
-SLASH_PREPS2 = "/prepswitch"
-SLASH_PREPS3 = "/preps"
+SLASH_PREPS1 = "/phisfactionswitcher"
+SLASH_PREPS2 = "/pfs"
 
 -- initialize variables
 local item_id, rep_id, zone_name
@@ -40,7 +39,7 @@ SlashCmdList["PREPS"] = function(args)
 	-- generic help message
 	if args:lower() ~= "toggle" then
 		print("phisFactionSwitcher v"..GetAddOnMetadata("phisFactionSwitcher","Version"))
-		print("Toggle the automatic switching of reputations with /preps toggle")
+		print("Toggle the automatic switching of reputations with /pfs toggle")
 	else	
 		-- toggle the value of disabled
 		enabled = not enabled
@@ -61,7 +60,7 @@ local function phis_OnEvent(self, event, ...)
 	if (event == "PLAYER_EQUIPMENT_CHANGED") then
 		local arg1, arg2 = ...
 		-- if the changed item was not a tabard or if an item was unequipped do nothing
-		if (arg1 ~= INVSLOT_TABARD) or (arg2 ~= 1) then
+		if (arg1 ~= INVSLOT_TABARD) or (arg2 == true) then
 			return
 		end
 		-- get the id of the equipped tabard
@@ -83,8 +82,8 @@ local function phis_OnEvent(self, event, ...)
 		
 		-- workaround for zones existing in Outland and Draenor
 		if zone_name == "Nagrand" or zone_name == "Shadowmoon Valley" then
-			local map_id = GetCurrentMapAreaID()
-			if map_id == 950 or map_id == 947 then
+			local map_id = C_Map.GetBestMapForUnit("player")
+			if map_id == 550 or map_id == 539 then
 				zone_name = zone_name.." (Draenor)"
 			end
 		end
