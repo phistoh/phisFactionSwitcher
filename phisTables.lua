@@ -48,6 +48,7 @@ phisZones = {
 	["Northern Barrens"] = 470,								-- Ratchet
 	["Felwood"] = 576,										-- Timbermaw Hold
 	["Warsong Gulch"] = {["A"] = 890, ["H"] = 889},			-- Silverwing Sentinels / Warsong Outriders
+	["Silithus"] = 2164,									-- Champions of Azeroth
 	
 	-- Eastern Kingdoms
 	["The Cape of Stranglethorn"] = 21,						-- Booty Bay
@@ -106,6 +107,17 @@ phisZones = {
 	["Krokuun"] = 2165,										-- Army of the Light
 	["Antoran Wastes"] = 2165,								-- Army of the Light
 	["Mac\'Aree"] = 2165,									-- Army of the Light
+	
+	-- Kul Tiras
+	["Tiragarde"] = 2160,									-- Proudmoore Admirality
+	["Stormsong"] = 2162,									-- Storm's Wake
+	["Drustvar"] = 2161,									-- Order of Embers
+	
+	-- Zandalar
+	["Nazmir"] = 2156,										-- Talanji's Expedition
+	["Zuldazar"] = 2103,									-- Zandalari Empire
+	["Vol\'dun"] = 2158,									-- Voldunai
+	
 	
 	-- Other
 	["Deepholm"] = 1171,									-- Therazane
