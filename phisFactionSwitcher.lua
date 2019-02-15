@@ -112,7 +112,7 @@ local function set_faction_index_by_id(rep_id)
 	
 	-- if already exalted, don't switch
 	-- except when it is a "paragonable" reputation
-	if standing == 8 and not paragons[rep_id] then
+	if standing == 8 and not phis.paragons[rep_id] then
 		return
 	end
 	
