@@ -39,6 +39,95 @@ SlashCmdList["PFS"] = function(args)
 	
 end
 
+-- scans the player's reputation pane and expands all collapsed headers
+-- stores which headers were collapsed so they can be collapsed again
+local function expand_and_remember()
+	local i = 1
+	
+	-- while-loop because the number of factions changes while expanding headers
+	while i < GetNumFactions() do
+		local faction_name, _, _, _, _, _, _, _, _, is_collapsed = GetFactionInfo(i)
+		if is_collapsed then
+			collapsed_factions[faction_name] = true
+			ExpandFactionHeader(i)
+		end
+		i = i + 1
+	end
+end
+
+-- scans the player's reputation pane and collapses all previously expanded headers
+local function collapse_and_forget()
+	local i = 1
+	
+	-- while-loop because the number of factions changes while expanding headers
+	while i < GetNumFactions() do
+		local faction_name = GetFactionInfo(i)
+		if collapsed_factions[faction_name] then
+			CollapseFactionHeader(i)
+		end
+		i = i + 1
+	end
+	
+	collapsed_factions = {}
+end
+
+local function set_faction_index_by_id(rep_id)
+	local faction_name, _, standing = GetFactionInfoByID(rep_id)
+	
+	-- if already exalted, don't switch
+	-- except when it is a "paragonable" reputation
+	if standing == 8 and not phis.paragons[rep_id] then
+		return
+	end
+	
+	-- expand faction headers so they get included in the search
+	expand_and_remember()
+	
+	-- check for every faction in the reputation pane if its name is the same as the one corresponding to rep_id
+	-- if a valid faction was found check if it is active and switch to it
+	local current_name
+	for i = 1, GetNumFactions() do
+		current_name = GetFactionInfo(i)
+		if faction_name == current_name then
+			if not IsFactionInactive(i) then
+				SetWatchedFactionIndex(i)
+			end
+			break
+		end
+	end
+	
+	-- restore the collapsed headers again
+	collapse_and_forget()
+	
+	return
+end
+
+local function set_faction_index_by_name(faction_name)
+	if faction_name == 'Guild' then
+		faction_name = GetGuildInfo('player')
+	end
+
+	-- expand faction headers so they get included in the search
+	expand_and_remember()
+	
+	-- check for every faction in the reputation pane if its name is the same as the argument
+	-- if a valid faction was found call set_faction_index_by_id() to set the faction
+	local current_name
+	for i = 1, GetNumFactions() do
+		current_name, _, _, _, _, _, _, _, _, _, _, _, _, rep_id = GetFactionInfo(i)
+		if faction_name == current_name then
+			collapse_and_forget()
+			set_faction_index_by_id(rep_id)
+			return
+		end
+	end
+	
+	-- restore the collapsed headers again
+	collapse_and_forget()
+	
+	return
+end
+
 local function main_eventhandler(self, event, ...)
 	-- do nothing if the addon is currently disabled
 	if not enabled then
@@ -105,95 +194,6 @@ local function main_eventhandler(self, event, ...)
 	
 	end
 	
-end
-
-local function set_faction_index_by_id(rep_id)
-	local faction_name, _, standing = GetFactionInfoByID(rep_id)
-	
-	-- if already exalted, don't switch
-	-- except when it is a "paragonable" reputation
-	if standing == 8 and not phis.paragons[rep_id] then
-		return
-	end
-	
-	-- expand faction headers so they get included in the search
-	expand_and_remember()
-	
-	-- check for every faction in the reputation pane if its name is the same as the one corresponding to rep_id
-	-- if a valid faction was found check if it is active and switch to it
-	local current_name
-	for i = 1, GetNumFactions() do
-		current_name = GetFactionInfo(i)
-		if faction_name == current_name then
-			if not IsFactionInactive(i) then
-				SetWatchedFactionIndex(i)
-			end
-			break
-		end
-	end
-	
-	-- restore the collapsed headers again
-	collapse_and_forget()
-	
-	return
-end
-
-local function set_faction_index_by_name(faction_name)
-	if faction_name == 'Guild' then
-		faction_name = GetGuildInfo('player')
-	end
-
-	-- expand faction headers so they get included in the search
-	expand_and_remember()
-	
-	-- check for every faction in the reputation pane if its name is the same as the argument
-	-- if a valid faction was found call set_faction_index_by_id() to set the faction
-	local current_name
-	for i = 1, GetNumFactions() do
-		current_name, _, _, _, _, _, _, _, _, _, _, _, _, rep_id = GetFactionInfo(i)
-		if faction_name == current_name then
-			collapse_and_forget()
-			set_faction_index_by_id(rep_id)
-			return
-		end
-	end
-	
-	-- restore the collapsed headers again
-	collapse_and_forget()
-	
-	return
-end
-
--- scans the player's reputation pane and expands all collapsed headers
--- stores which headers were collapsed so they can be collapsed again
-local function expand_and_remember()
-	local i = 1
-	
-	-- while-loop because the number of factions changes while expanding headers
-	while i < GetNumFactions() do
-		local faction_name, _, _, _, _, _, _, _, _, is_collapsed = GetFactionInfo(i)
-		if is_collapsed then
-			collapsed_factions[faction_name] = true
-			ExpandFactionHeader(i)
-		end
-		i = i + 1
-	end
-end
-
--- scans the player's reputation pane and collapses all previously expanded headers
-local function collapse_and_forget()
-	local i = 1
-	
-	-- while-loop because the number of factions changes while expanding headers
-	while i < GetNumFactions() do
-		local faction_name = GetFactionInfo(i)
-		if collapsed_factions[faction_name] then
-			CollapseFactionHeader(i)
-		end
-		i = i + 1
-	end
-	
-	collapsed_factions = {}
 end
 
 local phis_f = CreateFrame("Frame")
