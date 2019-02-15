@@ -1,5 +1,7 @@
+local addonName, phis = ...
+
 -- table of [tabard id] = reputation id pairs
-phisTabards = {
+phis.tabards = {
 	-- main alliance factions
 	[45574] = 72,   -- Stormwind
 	[45577] = 47,   -- Ironforge
@@ -33,9 +35,34 @@ phisTabards = {
 	[65909] = 1172  -- Dragonmaw Clan
 }
 
+
+-- table of [reputation id] = true pairs to check if the corresponding faction offers Paragon rewards
+phis.paragons = {
+	-- Legion
+	[1828]=true, -- Highmountain Tribe
+	[1859]=true, -- The Nightfallen
+	[1883]=true, -- Dreamweavers
+	[1900]=true, -- Court of Farondis
+	[1948]=true, -- Valajar
+	[1894]=true, -- The Wardens
+	[2045]=true, -- Armies of the Legionfall
+	
+	-- Battles for Azeroth
+	[2160]=true, -- Proudmoore Admirality
+	[2162]=true, -- Storm's Wake
+	[2161]=true, -- Order of Embers
+	[2156]=true, -- Talanji's Expedition
+	[2103]=true, -- Zandalari Empire
+	[2158]=true, -- Voldunai
+	[2164]=true, -- Champions of Azeroth
+	[2159]=true, -- 7th Legion
+	[2157]=true, -- Honorbound
+	[2163]=true, -- Tortollan Seekers
+}
+
 -- table of ["zone name"] = reputation id pairs
 -- or ["zone name"] = {["A"] = rep id, ["H"] = rep id} pairs for zones with different reputations for Alliance/Horde
-phisZones = {
+phis.zones = {
 	-- Kalimdor
 	["Mount Hyjal"] = 1158,									-- Guardians of Hyjal
 	["Uldum"] = 1173,										-- Ramkahen

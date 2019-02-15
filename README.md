@@ -10,6 +10,7 @@ The addon automatically switches the watched faction so there is nothing you hav
 - **phisTables.lua** contains tables to assign faction IDs to corresponding tabards and zones
 
 ## Changes
+- **1.1**: Tables are now stored in the "addon namespace"; also includes BfA Paragon factions
 - **1.0.10**: Update Interface number for BfA Tides of Vengeance (8.1)
 - **1.0.9**: Update for BfA-Prepatch, changed the commands to `/phisfactionswitcher` and `/pfs`
 - **1.0.8**: Now includes Argus (Army of the Light)
@@ -28,4 +29,4 @@ The addon automatically switches the watched faction so there is nothing you hav
 - [ ] Handle zones with multiple factions (random/highest rep/...?)
 - [x] Include Vashj'ir subzones
 - [x] Implement an useful function for the `/pfs` slash command
-- [ ] Include BfA Paragon factions
+- [x] Include BfA Paragon factions
