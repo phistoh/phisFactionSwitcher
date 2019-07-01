@@ -139,16 +139,17 @@ phis.zones = {
 	["Tiragarde"] = 2160,									-- Proudmoore Admirality
 	["Stormsong"] = 2162,									-- Storm's Wake
 	["Drustvar"] = 2161,									-- Order of Embers
+	["Mechagon"] = 2391,									-- Rustbolt Resistance
 	
 	-- Zandalar
 	["Nazmir"] = 2156,										-- Talanji's Expedition
 	["Zuldazar"] = 2103,									-- Zandalari Empire
 	["Vol\'dun"] = 2158,									-- Voldunai
 	
-	
 	-- Other
 	["Deepholm"] = 1171,									-- Therazane
 	["Darkmoon Island"] = 909,								-- Darkmoon Faire
+	["Nazjatar"] = {["A"] = 2400, ["H"] = 2373},			-- Waveblade Ankoan / The Unshackled
 	
 	-- Dungeons
 	["Old Hillsbrad Foothills"] = 989,						-- Keepers of Time
