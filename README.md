@@ -10,6 +10,7 @@ The addon automatically switches the watched faction so there is nothing you hav
 - **phisTables.lua** contains tables to assign faction IDs to corresponding tabards and zones
 
 ## Changes
+- **1.1.3**: Update for BfA Visions of N'Zoth (8.3) (new interface number)
 - **1.1.2**: Update for BfA Rise of Azshara (8.2) (new interface number and new factions in table)
 - **1.1.1**: Fixed a typo
 - **1.1**: Tables are now stored in the "addon namespace"; also includes BfA Paragon factions
