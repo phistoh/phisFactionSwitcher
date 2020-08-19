@@ -133,6 +133,12 @@ local function main_eventhandler(self, event, ...)
 	if not enabled then
 		return
 	end
+	
+	-- only change watched faction if there is a watched faction
+	watched_faction = GetWatchedFactionInfo()
+	if not watched_faction then
+		return
+	end
 
 	-- check if the player equipped/unequipped something
 	if (event == "PLAYER_EQUIPMENT_CHANGED") then
