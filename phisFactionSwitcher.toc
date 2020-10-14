@@ -1,4 +1,4 @@
-## Interface: 80300
+## Interface: 90001
 ## Author: phistoh
 ## Title: phisFactionSwitcher
 ## Version: 1.1.4
