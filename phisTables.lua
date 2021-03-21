@@ -47,7 +47,7 @@ phis.paragons = {
 	[1894]=true, -- The Wardens
 	[2045]=true, -- Armies of the Legionfall
 	
-	-- Battles for Azeroth
+	-- Battle for Azeroth
 	[2160]=true, -- Proudmoore Admirality
 	[2162]=true, -- Storm's Wake
 	[2161]=true, -- Order of Embers
@@ -58,6 +58,12 @@ phis.paragons = {
 	[2159]=true, -- 7th Legion
 	[2157]=true, -- Honorbound
 	[2163]=true, -- Tortollan Seekers
+	
+	-- Shadowlands
+	[2407]=true, -- The Ascended
+	[2413]=true, -- Court of Harvesters
+	[2410]=true, -- The Undying Army
+	[2465]=true, -- The Wild Hunt
 }
 
 -- table of ["zone name"] = reputation id pairs
@@ -145,6 +151,13 @@ phis.zones = {
 	["Nazmir"] = 2156,										-- Talanji's Expedition
 	["Zuldazar"] = 2103,									-- Zandalari Empire
 	["Vol\'dun"] = 2158,									-- Voldunai
+	
+	-- Shadowlands
+	["Bastion"] = 2407,										-- The Ascended
+	["Maldraxxus"] = 2410,									-- The Undying Army
+	["Ardenweald"] = 2422,									-- The Wild Hunt
+	["Revendreth"] = 2413,									-- Court of Harvesters
+	["The Maw"] = 2432,										-- Ve'nari
 	
 	-- Other
 	["Deepholm"] = 1171,									-- Therazane

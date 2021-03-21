@@ -1,7 +1,7 @@
-## Interface: 90001
+## Interface: 90005
 ## Author: phistoh
 ## Title: phisFactionSwitcher
-## Version: 1.1.5
+## Version: 1.1.6
 ## Notes: Switches the reputation bar depending on last progress/zone/tabard
 
 phisTables.lua

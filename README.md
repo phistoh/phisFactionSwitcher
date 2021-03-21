@@ -10,6 +10,7 @@ The addon automatically switches the watched faction so there is nothing you hav
 - **phisTables.lua** contains tables to assign faction IDs to corresponding tabards and zones
 
 ## Changes
+- **1.1.6**: Update for Shadowlands (9.0.5) (new interface number)
 - **1.1.5**: Update for Shadowlands pre-expansion patch (9.0.1) (new interface number)
 - **1.1.4**: Only changes the watched faction if the player is watching a faction
 - **1.1.3**: Update for BfA Visions of N'Zoth (8.3) (new interface number)
