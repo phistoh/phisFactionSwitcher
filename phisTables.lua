@@ -158,6 +158,7 @@ phis.zones = {
 	["Ardenweald"] = 2422,									-- The Wild Hunt
 	["Revendreth"] = 2413,									-- Court of Harvesters
 	["The Maw"] = 2432,										-- Ve'nari
+	["Korthia"] = 2470,										-- Death's Advance
 	
 	-- Other
 	["Deepholm"] = 1171,									-- Therazane
