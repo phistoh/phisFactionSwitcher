@@ -10,6 +10,7 @@ The addon automatically switches the watched faction so there is nothing you hav
 - **phisTables.lua** contains tables to assign faction IDs to corresponding tabards and zones
 
 ## Changes
+- **1.1.8**:  Now includes an options panel and the possibility to toggle the individual conditions for changing the watched factions (saved across all characters)
 - **1.1.7**: Update for Chains of Domination (9.1.0) (new interface number and inclusion of Deaths Advance faction)
 - **1.1.6**: Update for Shadowlands (9.0.5) (new interface number)
 - **1.1.5**: Update for Shadowlands pre-expansion patch (9.0.1) (new interface number)
@@ -32,7 +33,7 @@ The addon automatically switches the watched faction so there is nothing you hav
 
 ## To-Do
 - [ ] Implement guild tabard
-- [ ] Implementing some kind of precedence (tabard > zone > last reputation)
+~~- [ ] Implementing some kind of precedence (tabard > zone > last reputation)~~
 - [ ] Handle zones with multiple factions (random/highest rep/...?)
 - [x] Include Vashj'ir subzones
 - [x] Implement an useful function for the `/pfs` slash command
