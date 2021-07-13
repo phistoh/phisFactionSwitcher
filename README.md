@@ -33,7 +33,7 @@ The addon automatically switches the watched faction so there is nothing you hav
 
 ## To-Do
 - [ ] Implement guild tabard
-~~- [ ] Implementing some kind of precedence (tabard > zone > last reputation)~~
+- [ ] ~~Implementing some kind of precedence (tabard > zone > last reputation)~~
 - [ ] Handle zones with multiple factions (random/highest rep/...?)
 - [x] Include Vashj'ir subzones
 - [x] Implement an useful function for the `/pfs` slash command
