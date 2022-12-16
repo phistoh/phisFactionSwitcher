@@ -256,7 +256,7 @@ local function create_checkbox(k, parent, anchor, text)
 	return checkbox
 end
 
-local options = CreateFrame('Frame', 'phisFactionSwitcherOptionsFrame', InterfaceOptionsFramePanelContainer)
+local options = CreateFrame('Frame', 'phisFactionSwitcherOptionsFrame', SettingsPanel.Container)
 options.name = GetAddOnMetadata(addonName,'Title')
 InterfaceOptions_AddCategory(options)
 options:SetScript('OnShow', function()
@@ -273,7 +273,7 @@ options:SetScript('OnShow', function()
 	local description_string = options:CreateFontString(nil, 'ARTWORK', 'GameFontHighlight')
 	description_string:SetPoint('TOPLEFT', title_string, 'BOTTOMLEFT', 0, -10)
 	description_string:SetJustifyH('LEFT')
-	description_string:SetWidth(InterfaceOptionsFramePanelContainer:GetWidth() - 40)
+	description_string:SetWidth(SettingsPanel.Container:GetWidth() - 40)
 	description_string:SetNonSpaceWrap(true)
 	description_string:SetText(DESCRIPTION_LONG)
 	
@@ -284,7 +284,6 @@ options:SetScript('OnShow', function()
 	checkboxes.combat_text = create_checkbox('combat_text', options, checkboxes.zone_change, 'Change faction bar to last reputation gain')
 	
 	options:SetScript('OnShow', nil)
-	options.refresh()
 end)
 
 phis_f:SetScript("OnEvent", main_eventhandler)
