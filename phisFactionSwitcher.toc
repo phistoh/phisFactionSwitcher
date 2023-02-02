@@ -1,8 +1,8 @@
-## Interface: 100002
+## Interface: 100005
 ## Author: phistoh
 ## Title: phisFactionSwitcher
 ## SavedVariables: phisFactionSwitcherSavedVars
-## Version: 1.1.9
+## Version: 1.1.10
 ## Notes: Switches the reputation bar depending on last progress/zone/tabard
 ## X-Curse-Project-ID: 103228
 ## X-WoWI-ID: 24285
