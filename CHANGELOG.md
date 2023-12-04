@@ -1,3 +1,7 @@
+## v1.1.11
+- Update for Dragonflight (10.2.0) (new interface number and factions)
+- Icon in `toc` file
+
 ## v1.1.10
 - Update for Dragonflight (10.0.5) (new interface number)
 

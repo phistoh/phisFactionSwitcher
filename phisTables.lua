@@ -64,6 +64,15 @@ phis.paragons = {
 	[2413]=true, -- Court of Harvesters
 	[2410]=true, -- The Undying Army
 	[2465]=true, -- The Wild Hunt
+	
+	-- Dragonflight
+	[2575]=true, -- Dream Wardens
+	[2552]=true, -- Valdrakken Accord
+	[2508]=true, -- Dragonscale Expedition
+	[2521]=true, -- Clan Nokhud
+	[2551]=true, -- Iskaara Tuskarr
+	[2565]=true, -- Loamm Niffen
+	[2504]=true, -- Maruuk Centaur
 }
 
 -- table of ["zone name"] = reputation id pairs
@@ -160,10 +169,14 @@ phis.zones = {
 	["The Maw"] = 2432,										-- Ve'nari
 	["Korthia"] = 2470,										-- Death's Advance
 	
+	-- Shadowlands
+	["Zaralek Cavern"] = 2565,								-- Loamm Niffen
+	
 	-- Other
 	["Deepholm"] = 1171,									-- Therazane
 	["Darkmoon Island"] = 909,								-- Darkmoon Faire
 	["Nazjatar"] = {["A"] = 2400, ["H"] = 2373},			-- Waveblade Ankoan / The Unshackled
+	["Emerald Dream"] = 2574,								-- Dream Wardens
 	
 	-- Dungeons
 	["Old Hillsbrad Foothills"] = 989,						-- Keepers of Time
