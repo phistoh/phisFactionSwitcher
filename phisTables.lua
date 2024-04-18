@@ -169,8 +169,9 @@ phis.zones = {
 	["The Maw"] = 2432,										-- Ve'nari
 	["Korthia"] = 2470,										-- Death's Advance
 	
-	-- Shadowlands
+	-- Dragonflight
 	["Zaralek Cavern"] = 2565,								-- Loamm Niffen
+	["The Azure Span"] = 2526,								-- Winterpelt Furbolg
 	
 	-- Other
 	["Deepholm"] = 1171,									-- Therazane
@@ -200,7 +201,7 @@ phis.zones = {
 	["Black Temple"] = 1012,								-- Ashtongue Deathsworn
 	["Temple of Ahn\'Qiraj"] = 910,							-- Brood of Nozdormu
 	["Ruins of Ahn\'Qiraj"] = 609,							-- Cenarion Circle
-	["The Molten Core"] = 749,									-- Hydraxian Waterlords
+	["The Molten Core"] = 749,								-- Hydraxian Waterlords
 	["Throne of Tunder"] = 1435,							-- Shado-Pan Assault
 	["Hyjal Summit"] = 990,									-- The Scale of Sands
 	["Icecrown Citadel"] = 1156,							-- The Ashen Verdict
