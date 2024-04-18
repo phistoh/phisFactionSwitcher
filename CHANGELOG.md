@@ -1,3 +1,6 @@
+## v1.1.12
+- Update for Plunderstorm (10.2.6) (new interface number)
+
 ## v1.1.11
 - Update for Dragonflight (10.2.0) (new interface number and factions)
 - Icon in `toc` file
